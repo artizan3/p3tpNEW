@@ -27,7 +27,7 @@ import servicio.Servicio;
 public class Empresa {
 	private static Empresa instance = null;
 	private ArrayList<Abonado> listaEmpresa = new ArrayList<Abonado>();
-	private ArrayList<Contrataciones> listaContrataciones = new ArrayList<Contrataciones>();
+	private ArrayList<Contratacion> listaContrataciones = new ArrayList<Contratacion>();
 	private ArrayList<Factura> listaFactura = new ArrayList<Factura>();
 	private FactoryPago creacion = new FactoryPago();
 
@@ -197,7 +197,7 @@ public class Empresa {
 		assert abonado != null : "El abonado debe ser distinto de null";
 		assert domicilio != null : "El domicilio debe ser distinto de null";
 		if (abonado.existeDomicilio(domicilio) == true && domicilio.isAgregado() == true) {
-			Contrataciones contrato = new Contrataciones(domicilio);
+			Contratacion contrato = new Contratacion(domicilio);
 			abonado.aniadirContratacion(contrato);
 			aniadirContratacion(contrato, abonado);
 		} else
@@ -259,7 +259,7 @@ public class Empresa {
 	 * 
 	 * @param contrato es el contrato que se añade.<br>
 	 */
-	private void aniadirContratacion(Contrataciones contrato, Abonado abonado) {
+	private void aniadirContratacion(Contratacion contrato, Abonado abonado) {
 		this.listaContrataciones.add(contrato);
 	}
 	/**

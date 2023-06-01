@@ -6,7 +6,7 @@ import Domicilio.Vivienda;
 import abonado.Abonado;
 import abonado.Fisica;
 import abonado.Juridica;
-import empresa.Contrataciones;
+import empresa.Contratacion;
 import empresa.Empresa;
 import empresa.Factura;
 import excepciones.ContratacionInvalidaException;

@@ -3,7 +3,7 @@ package abonado;
 import java.util.ArrayList;
 
 import Domicilio.Domicilio;
-import empresa.Contrataciones;
+import empresa.Contratacion;
 import excepciones.DomicilioExistenteException;
 import excepciones.DomicilioInexistenteException;
 /*
@@ -14,8 +14,8 @@ import excepciones.DomicilioInexistenteException;
 public abstract class Abonado implements Cloneable, iAbonado {
 	protected String nombre;
 	protected int dni;
-	protected ArrayList<Contrataciones> Lista = new ArrayList<Contrataciones>();
-	protected ArrayList<Domicilio> ListaDeDomicilios = new ArrayList<Domicilio>();
+	protected ArrayList<Contratacion> lista = new ArrayList<Contratacion>();
+	protected ArrayList<Domicilio> listaDeDomicilios = new ArrayList<Domicilio>();
 
 	/**
 	 * Constructor de la clase <br>
@@ -50,7 +50,7 @@ public abstract class Abonado implements Cloneable, iAbonado {
 	public void aniadirDomicilio(Domicilio domicilio) throws DomicilioExistenteException {
 		assert domicilio != null : "El domicilo no puede ser null";
 		if (domicilio.isAgregado() == false) {
-			this.ListaDeDomicilios.add(domicilio);
+			this.listaDeDomicilios.add(domicilio);
 			domicilio.setAgregado(true);
 		} else
 			throw new DomicilioExistenteException("El domicilio ya estaba agregado a la lista", domicilio);
@@ -59,8 +59,8 @@ public abstract class Abonado implements Cloneable, iAbonado {
 	/*
 	 * Devuelve la lista de contrataciones del abonado
 	 */
-	public ArrayList<Contrataciones> getLista() {
-		return Lista;
+	public ArrayList<Contratacion> getLista() {
+		return lista;
 	}
 	/**
 	 * El metodo recibe un tipo abonado y devuelve la suma de los valores de las
@@ -87,9 +87,9 @@ public abstract class Abonado implements Cloneable, iAbonado {
 	 * 
 	 * @param contrato es la contratacion que aniadimos en la lista.
 	 */
-	public void aniadirContratacion(Contrataciones contrato) {
+	public void aniadirContratacion(Contratacion contrato) {
 		assert contrato != null : "El contrato debe ser distinto de null";
-		this.Lista.add(contrato);
+		this.lista.add(contrato);
 	}
 
 	/**
@@ -100,7 +100,7 @@ public abstract class Abonado implements Cloneable, iAbonado {
 	public void quitarDomicilio(Domicilio domicilio) throws DomicilioInexistenteException {
 		assert domicilio != null : "El domicilio debe ser distinto de null";
 		if (existeDomicilio(domicilio) == true && domicilio.isAgregado() == true) {
-			this.ListaDeDomicilios.remove(domicilio);
+			this.listaDeDomicilios.remove(domicilio);
 			domicilio.setAgregado(false);
 		} else if (existeDomicilio(domicilio) == false)
 			throw new DomicilioInexistenteException("Domicilio inexistente en la lista", domicilio);
@@ -122,7 +122,7 @@ public abstract class Abonado implements Cloneable, iAbonado {
 	 */
 	public boolean existeDomicilio(Domicilio domicilio) {
 		assert domicilio != null : "El domicilio debe ser distinto de null";
-		return this.ListaDeDomicilios.contains(domicilio);
+		return this.listaDeDomicilios.contains(domicilio);
 	}
 	/**
 	 * El metodo recibe un contrato por parametro y verifica si existe o no,
@@ -133,9 +133,9 @@ public abstract class Abonado implements Cloneable, iAbonado {
 	 * <b>Post</b>: Se verifica la existencia del contrato.<br>
 	 * 
 	 */
-	public boolean existeContratacion(Contrataciones contrato) {
+	public boolean existeContratacion(Contratacion contrato) {
 		assert contrato != null : "El domicilio debe ser distinto de null";
-		return this.Lista.contains(contrato);
+		return this.lista.contains(contrato);
 	}
 	
 	/**
@@ -149,14 +149,14 @@ public abstract class Abonado implements Cloneable, iAbonado {
 	public Object clone() throws CloneNotSupportedException {
 		Abonado clon = null;
 		clon = (Abonado) super.clone();
-		clon.ListaDeDomicilios = (ArrayList<Domicilio>) this.ListaDeDomicilios.clone();
-		clon.ListaDeDomicilios.clear();
-		for (int i = 0; i < this.ListaDeDomicilios.size(); i++)
-			clon.ListaDeDomicilios.add((Domicilio) this.ListaDeDomicilios.get(i).clone());
-		clon.Lista = (ArrayList<Contrataciones>) this.Lista.clone();
-		clon.Lista.clear();
-		for (int i = 0; i < this.Lista.size(); i++)
-			clon.Lista.add((Contrataciones) this.Lista.get(i).clone());
+		clon.listaDeDomicilios = (ArrayList<Domicilio>) this.listaDeDomicilios.clone();
+		clon.listaDeDomicilios.clear();
+		for (int i = 0; i < this.listaDeDomicilios.size(); i++)
+			clon.listaDeDomicilios.add((Domicilio) this.listaDeDomicilios.get(i).clone());
+		clon.lista = (ArrayList<Contratacion>) this.lista.clone();
+		clon.lista.clear();
+		for (int i = 0; i < this.lista.size(); i++)
+			clon.lista.add((Contratacion) this.lista.get(i).clone());
 		return clon;
 	}
 }
