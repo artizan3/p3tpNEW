@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"abonado"},{"l":"All Packages","u":"allpackages-index.html"},{"l":"controlador"},{"l":"Domicilio"},{"l":"empresa"},{"l":"excepciones"},{"l":"main"},{"l":"metodosdepago"},{"l":"persistencia"},{"l":"promo"},{"l":"servicio"},{"l":"vista"}];updateSearchResults();
